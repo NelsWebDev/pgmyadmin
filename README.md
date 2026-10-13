@@ -11,6 +11,16 @@ npm start            # http://127.0.0.1:3000
 
 By default you log in with your PostgreSQL host, port, user, password and database; credentials live only in server memory for the session (30 min idle timeout) and the browser holds an opaque HttpOnly cookie.
 
+## Docker
+
+```bash
+docker build -t pgmyadmin .
+docker run -p 8080:8080 -e PGMA_HOST=my-postgres-host pgmyadmin   # http://localhost:8080
+docker compose up --build                                          # app + throwaway Postgres
+```
+
+Configure it with the same `PGMA_*` variables as `-e` flags (see below). The image listens on `0.0.0.0:8080`, runs as a non-root user, and ignores `.env` unless you mount one and set `PGMA_ENV_FILE`. Inside a container, `localhost` is the container itself, so use the Postgres container/host name for `PGMA_HOST`. Don't combine `PGMA_USER` (config auth) with a publicly reachable port.
+
 ## Configuration (`.env`)
 
 Copy [.env.example](.env.example) to `.env` (next to `server.js`). Variable names follow phpMyAdmin's Docker image (`PMA_HOST`, `PMA_USER`, `PMA_ARBITRARY`, …) with a `PGMA_` prefix. Real environment variables override the file; `PGMA_ENV_FILE=/path/x.env` uses another file (empty disables loading). Invalid values stop startup with a clear message.

@@ -1,0 +1,17 @@
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_PASSWORD: secret
+  pgmyadmin:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      PGMA_HOST: db
+      PGMA_PORT: 5432
+      # Uncomment to skip the login screen (anyone who can reach the port gets full access):
+      # PGMA_USER: postgres
+      # PGMA_PASSWORD: secret
+    depends_on:
+      - db
