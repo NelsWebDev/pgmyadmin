@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "A phpMyAdmin-style web administration tool for PostgreSQL, built with Node.js and Express",
   "main": "server.js",
+  "repository": "https://github.com/NelsWebDev/pgmyadmin",
+  "author": "Nels Romerdahl <7355705+NelsWebDev@users.noreply.github.com>",
   "scripts": {
     "start": "node server.js",
     "test": "node --test test/*.test.js",

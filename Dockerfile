@@ -1,4 +1,5 @@
 FROM node:22-alpine
+LABEL org.opencontainers.image.source=https://github.com/NelsWebDev/pgmyadmin
 ENV NODE_ENV=production \
     PGMA_LISTEN_HOST=0.0.0.0 \
     PGMA_LISTEN_PORT=8080 \
